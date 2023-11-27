@@ -5,33 +5,100 @@
      </head>
      <body>
         <div>
-            <!--表格-->
-            <table border="1">
+            <!--按鍵-->
+            <table border="0">
                 <tr>
-                    <td><input type="button" value="E"></td>
                     <td></td>
                     <td></td>
+                    <td><input type="button" value="Ｅ" class="WASD" id="E"></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="button" value="W"></td>
+                    <td><input type="button" value="Ｗ" class="WASD" id="W"></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="A"></td>
-                    <td><input type="button" value="S"></td>
-                    <td><input type="button" value="D"></td>
+                    <td><input type="button" value="Ａ" class="WASD" id="A"></td>
+                    <td><input type="button" value="Ｓ" class="WASD" id="S"></td>
+                    <td><input type="button" value="Ｄ" class="WASD" id="D"></td>
                 </tr>
             </table>
        </div>
+       <!--圖片-->
+       <img src='https://2305007.github.io/x3366889x.github.io/釣魚/rickroll.gif' class="rickroll">
      </body>
 </html>
 <style>
     div{
         position: absolute;
+        transform: translate(-120%,-120%);
         top: 100%;
+        left: 100%;
     }
     table{
-        transform: translate(0%,100%)
+        width: 100%;
+        height: 100%;
+    }
+    .WASD{
+        width: 90%;
+        height: 90%;
+        font-size: 370%;
+        border-radius: 10px;
+    }
+    .WASD:active{
+        background-color: #909090;
+    }
+    .rickroll{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
     }
 </style>
+<script>
+    rickroll = document.querySelector('.rickroll');
+    function rickroll_WH(){
+        if (window.innerHeight > window.innerWidth){
+            rickroll.style.width  = window.innerWidth/8  + "px"
+            rickroll.style.height = window.innerWidth/8  + "px"
+        } else {
+            rickroll.style.width  = window.innerHeight/8 + "px"
+            rickroll.style.height = window.innerHeight/8 + "px"
+        }
+    }
+    div = document.querySelector('div');
+    function div_WH(){
+        div.style.width  = window.innerWidth/10*3   + "px"
+        div.style.height = window.innerHeight/10*3  + "px"
+    }
+    rickroll_WH()
+    div_WH()
+    window.addEventListener('resize',rickroll_WH)
+    window.addEventListener('resize',div_WH)
+
+
+    function W1(){}
+    function A1(){}
+    function S1(){}
+    function D1(){}
+    function E1(){}
+
+
+
+    var W = document.getElementById("W");//87
+    var A = document.getElementById("A");//65
+    var S = document.getElementById("S");//83
+    var D = document.getElementById("D");//68
+    var E = document.getElementById("E");//69
+    document.onkeydown = function(event) {
+    if(event.keyCode == 87){W1();};
+    if(event.keyCode == 65){A1();};
+    if(event.keyCode == 83){S1();};
+    if(event.keyCode == 68){D1();};
+    if(event.keyCode == 69){E1();};
+    }
+
+
+
+
+</script>
