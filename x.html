@@ -54,6 +54,9 @@
     .rickroll{
         position: absolute;
         transform: translate(-50%,-50%);
+        border-Style : ridge;
+        border-Color : #909090;
+        border-Width : 7px;
         z-index: 997;
     }
 </style>
@@ -102,7 +105,7 @@
         var frame = document.getElementById("x")
         var box = document.createElement("img")
         box.className = box
-        box.style.background = "url('https://memeprod.ap-south-1.linodeobjects.com/user-gif-post/1685109642083.gif')"
+        box.style.background = "url('https://i.imgur.com/3iy3REX.gif')"
         box.style.backgroundSize = "contain"
         box.style.width = parseInt(rickroll.style.width)/2  +"px"
         box.style.height = parseInt(rickroll.style.height)/2+"px"
@@ -111,6 +114,9 @@
         box.style.position = "absolute"
         box.style.transform= "translate(-50%,-50%)"
         box.style.zIndex = "998"
+        box.style.borderStyle = "ridge"
+        box.style.borderColor = "#909090"
+        box.style.borderWidth = "5px"
         frame.appendChild(box)
     }
     
