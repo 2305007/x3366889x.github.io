@@ -3,10 +3,15 @@
      <head>
          <title>x.html</title>
      </head>
-     <body>
+     <body id="x">
+        <table border="1">
+            <tr><td>1</td><td>2</td><td>3</td></tr>
+            <tr><td>4</td><td>5</td><td>6</td></tr>
+            <tr><td>7</td><td>8</td><td>9</td></tr>
+        </table>
+        <!--按鍵圖示-->
         <div>
-            <!--按鍵-->
-            <table border="0">
+            <table border="0" class="X">
                 <tr>
                     <td></td>
                     <td></td>
@@ -31,73 +36,90 @@
 <style>
     div{
         position: absolute;
-        transform: translate(-110%,-110%);
+        transform: translate(-130%,-140%);
         top: 100%;
         left: 100%;
+        z-index: 999;
     }
-    table{
+    .X{
         width: 100%;
         height: 100%;
     }
     .WASD{
-        width: 90%;
-        height: 90%;
-        font-size: 370%;
-        border-radius: 10px;
-    }
-    .WASD:active:hover{
-        background-color: #909090;
+        width: 100%;
+        height: 100%;
+        font-size: 350%;
+        border-radius: 15px;
     }
     .rickroll{
         position: absolute;
         transform: translate(-50%,-50%);
+        z-index: 997;
     }
 </style>
 <script>
-    rickroll = document.querySelector('.rickroll');
+    //獲取物件
+    var rickroll = document.querySelector('.rickroll');
+    var div      = document.querySelector('div');
+    var W        = document.getElementById("W");//87
+    var A        = document.getElementById("A");//65
+    var S        = document.getElementById("S");//83
+    var D        = document.getElementById("D");//68
+    var E        = document.getElementById("E");//69
+    //設定GIF大小
     function rickroll_WH(){
         if (window.innerHeight > window.innerWidth){
-            rickroll.style.width  = window.innerWidth/8  + "px"
-            rickroll.style.height = window.innerWidth/8  + "px"
+            rickroll.style.width  = window.innerWidth/10*2  + "px"
+            rickroll.style.height = window.innerWidth/10*2  + "px"
         } else {
-            rickroll.style.width  = window.innerHeight/8 + "px"
-            rickroll.style.height = window.innerHeight/8 + "px"
+            rickroll.style.width  = window.innerHeight/10*2 + "px"
+            rickroll.style.height = window.innerHeight/10*2 + "px"
         }
     }
-    div = document.querySelector('div');
+    //設定操作畫面大小
     function div_WH(){
-        div.style.width  = window.innerWidth/10*3   + "px"
-        div.style.height = window.innerHeight/10*3  + "px"
+        div.style.width  = window.innerWidth/10*2   + "px"
+        div.style.height = window.innerHeight/10*2  + "px"
     }
+    //初始化GIF大小+位置
     rickroll_WH()
     rickroll.style.top  = window.innerHeight/2 + "px"
     rickroll.style.left = window.innerWidth/2  + "px"
+    //初始化操作畫面大小
     div_WH()
+    //當視窗大小變更重新調整
     window.addEventListener('resize',rickroll_WH)
     window.addEventListener('resize',div_WH)
 
+    var speed = 30
+    function W1(){if(parseInt(rickroll.style.top)-parseInt(rickroll.style.height)/2 >= speed){rickroll.style.top  = parseInt(rickroll.style.top)  - speed + "px";W.style.backgroundColor = "#909090"}}
+    function A1(){if(parseInt(rickroll.style.left)-parseInt(rickroll.style.width)/2 >= speed){rickroll.style.left = parseInt(rickroll.style.left) - speed + "px";A.style.backgroundColor = "#909090"}}
+    function S1(){if(window.innerHeight-parseInt(rickroll.style.top)-parseInt(rickroll.style.height)/2 >= speed){rickroll.style.top  = parseInt(rickroll.style.top)  + speed + "px";S.style.backgroundColor = "#909090"}}
+    function D1(){if(window.innerWidth-parseInt(rickroll.style.left)-parseInt(rickroll.style.width)/2 >= speed){rickroll.style.left = parseInt(rickroll.style.left) + speed + "px";D.style.backgroundColor = "#909090"}}
 
-    var W = document.getElementById("W");//87
-    var A = document.getElementById("A");//65
-    var S = document.getElementById("S");//83
-    var D = document.getElementById("D");//68
-    var E = document.getElementById("E");//69
-
-    function W1(){rickroll.style.top  = parseInt(rickroll.style.top)  - 10 + "px";W.style.backgroundColor = "#909090"}
-    function A1(){rickroll.style.left = parseInt(rickroll.style.left) - 10 + "px";A.style.backgroundColor = "#909090"}
-    function S1(){rickroll.style.top  = parseInt(rickroll.style.top)  + 10 + "px";S.style.backgroundColor = "#909090"}
-    function D1(){rickroll.style.left = parseInt(rickroll.style.left) + 10 + "px";D.style.backgroundColor = "#909090"}
-    function E1(){}
+    function E1(){
+        E.style.backgroundColor = "#909090"
+        var frame = document.getElementById("x")
+        var box = document.createElement("img")
+        box.className = box
+        box.style.background = "url('https://memeprod.ap-south-1.linodeobjects.com/user-gif-post/1685109642083.gif')"
+        box.style.backgroundSize = "contain"
+        box.style.width = parseInt(rickroll.style.width)/2  +"px"
+        box.style.height = parseInt(rickroll.style.height)/2+"px"
+        box.style.top = rickroll.style.top
+        box.style.left = rickroll.style.left
+        box.style.position = "absolute"
+        box.style.transform= "translate(-50%,-50%)"
+        box.style.zIndex = "998"
+        frame.appendChild(box)
+    }
     
     function WASD2(){
         W.style.backgroundColor = "#f0f0f0"
         A.style.backgroundColor = "#f0f0f0"
         S.style.backgroundColor = "#f0f0f0"
         D.style.backgroundColor = "#f0f0f0"
-        clearInterval(a)
-        clearInterval(b)
-        clearInterval(c)
-        clearInterval(d)
+        E.style.backgroundColor = "#f0f0f0"
     }
     function E2(){}
 
@@ -116,17 +138,6 @@
     if(event.keyCode == 68){WASD2();};
     if(event.keyCode == 69){WASD2();};
     }
-
-    W.onmousedown = function() {a = setInterval(function(){W1()},50)}
-    A.onmousedown = function() {b = setInterval(function(){A1()},50)}
-    S.onmousedown = function() {c = setInterval(function(){S1()},50)}
-    D.onmousedown = function() {d = setInterval(function(){D1()},50)}
-
-
-    W.addEventListener("click",function (){WASD2()})
-    A.addEventListener("click",function (){WASD2()})
-    S.addEventListener("click",function (){WASD2()})
-    D.addEventListener("click",function (){WASD2()})
     
 
 
